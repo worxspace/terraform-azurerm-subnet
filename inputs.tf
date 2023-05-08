@@ -1,17 +1,17 @@
 variable "resource-group-name" {
-  description = "resource group where you want to create the virtual machines"
+  description = "resource group where you want to create the subnets"
   type        = string
 }
 
 variable "location" {
   type        = string
   default     = "switzerlandnorth"
-  description = "value for the location of the virtual machines"
+  description = "value for the location of the subnets"
 }
 
 variable "project-name" {
   type        = string
-  description = "used as the main part of the name of the virtual machine"
+  description = "used as the main part of the name of the subnet"
 }
 
 variable "resource-prefixes" {

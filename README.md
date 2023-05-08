@@ -40,9 +40,9 @@ No modules.
 | <a name="input_address-prefix"></a> [address-prefix](#input\_address-prefix) | value for the address prefix of the subnet | `string` | n/a | yes |
 | <a name="input_firewall-ip"></a> [firewall-ip](#input\_firewall-ip) | value for the ip address of the firewall where default internet route is to be created. If null, then no route is created | `string` | n/a | yes |
 | <a name="input_global-tags"></a> [global-tags](#input\_global-tags) | tags to be applied to all resources | `map(string)` | `{}` | no |
-| <a name="input_location"></a> [location](#input\_location) | value for the location of the virtual machines | `string` | `"switzerlandnorth"` | no |
-| <a name="input_project-name"></a> [project-name](#input\_project-name) | used as the main part of the name of the virtual machine | `string` | n/a | yes |
-| <a name="input_resource-group-name"></a> [resource-group-name](#input\_resource-group-name) | resource group where you want to create the virtual machines | `string` | n/a | yes |
+| <a name="input_location"></a> [location](#input\_location) | value for the location of the subnets | `string` | `"switzerlandnorth"` | no |
+| <a name="input_project-name"></a> [project-name](#input\_project-name) | used as the main part of the name of the subnet | `string` | n/a | yes |
+| <a name="input_resource-group-name"></a> [resource-group-name](#input\_resource-group-name) | resource group where you want to create the subnets | `string` | n/a | yes |
 | <a name="input_resource-prefixes"></a> [resource-prefixes](#input\_resource-prefixes) | these are prefixed to resource names and usually include the tenant short name and/or the environment name | `list(string)` | `[]` | no |
 | <a name="input_resource-suffixes"></a> [resource-suffixes](#input\_resource-suffixes) | these are appended to resource names and usually include the numbers when multiple resource with the same name exist | `list(string)` | `[]` | no |
 | <a name="input_vnet-name"></a> [vnet-name](#input\_vnet-name) | value for the name of the virtual network where subnet is to be created | `string` | n/a | yes |
