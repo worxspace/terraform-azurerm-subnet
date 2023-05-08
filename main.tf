@@ -12,15 +12,16 @@ resource "azurecaf_name" "name" {
     "azurerm_subnet",
     "azurerm_route_table"
   ]
-  name     = var.name
-  prefixes = [var.tenant-short-name]
+  name     = var.project-name
+  prefixes = var.resource-prefixes
+  suffixes = var.resource-suffixes
 }
 
 resource "azurerm_subnet" "Subnet" {
   name                 = azurecaf_name.name.results.azurerm_subnet
   resource_group_name  = var.resource-group-name
   virtual_network_name = var.vnet-name
-  address_prefixes     = [var.address-space]
+  address_prefixes     = [var.address-prefix]
 
   tags = var.global-tags
 }
