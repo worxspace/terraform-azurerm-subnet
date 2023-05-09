@@ -22,11 +22,11 @@ resource "azurerm_subnet" "Subnet" {
   resource_group_name  = var.resource-group-name
   virtual_network_name = var.vnet-name
   address_prefixes     = [var.address-prefix]
-
-  tags = var.global-tags
 }
 
 resource "azurerm_route_table" "RouteTable" {
+  count = var.firewall-ip == null ? 0 : 1
+
   name                = azurecaf_name.name.results.azurerm_route_table
   resource_group_name = var.resource-group-name
   location            = var.location
@@ -35,15 +35,19 @@ resource "azurerm_route_table" "RouteTable" {
 }
 
 resource "azurerm_route" "InternetToFirewall" {
+  count = var.firewall-ip == null ? 0 : 1
+  
   name                   = "InternetToFirewall"
   resource_group_name    = var.resource-group-name
-  route_table_name       = azurerm_route_table.RouteTable.name
+  route_table_name       = azurerm_route_table.RouteTable[0].name
   address_prefix         = "0.0.0.0/0"
   next_hop_type          = "VirtualAppliance"
   next_hop_in_ip_address = var.firewall-ip
 }
 
 resource "azurerm_subnet_route_table_association" "FirewallRoute" {
+  count = var.firewall-ip == null ? 0 : 1
+
   subnet_id      = azurerm_subnet.Subnet.id
-  route_table_id = azurerm_route_table.RouteTable.id
+  route_table_id = azurerm_route_table.RouteTable[0].id
 }

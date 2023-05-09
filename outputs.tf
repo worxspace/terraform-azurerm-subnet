@@ -9,6 +9,6 @@ output "address-prefixes" {
 }
 
 output "route-table-name" {
-  value = azurerm_route_table.RouteTable.name
+  value = azurerm_route_table.RouteTable.*.name
   description = "name of the route table"
 }
