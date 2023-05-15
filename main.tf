@@ -22,6 +22,8 @@ resource "azurerm_subnet" "Subnet" {
   resource_group_name  = var.resource-group-name
   virtual_network_name = var.vnet-name
   address_prefixes     = [var.address-prefix]
+
+  service_endpoints = var.service-endpoints
 }
 
 resource "azurerm_route_table" "RouteTable" {

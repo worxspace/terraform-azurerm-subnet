@@ -48,3 +48,9 @@ variable "global-tags" {
   default     = {}
   description = "tags to be applied to all resources"
 }
+
+variable "service-endpoints" {
+  type       = list(string)
+  default     = []
+  description = "list of service endpoints to be enabled on the subnet"
+}
