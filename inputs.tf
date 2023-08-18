@@ -21,6 +21,13 @@ variable "resource-prefixes" {
   default = []
 }
 
+variable "random-resource-suffix-length" {
+  type        = number
+  description = "this will add a random string to the end of your resources using a-z and 0-9 upto the number specified"
+
+  default = 0
+}
+
 variable "resource-suffixes" {
   type        = list(string)
   description = "these are appended to resource names and usually include the numbers when multiple resource with the same name exist"

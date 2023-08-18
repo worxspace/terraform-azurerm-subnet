@@ -7,7 +7,12 @@
  * so make sure to provide the project-name, prefixes, suffixes as necessary
  */
 
-resource "azurecaf_name" "name" {
+module "names" {
+  source   = "app.terraform.io/worxspace/name/azurecaf"
+  version  = "0.0.2"
+
+  count = var.github_repo == null ? 0 : 1
+
   resource_types = [
     "azurerm_subnet",
     "azurerm_route_table"
@@ -15,10 +20,12 @@ resource "azurecaf_name" "name" {
   name     = var.project-name
   prefixes = var.resource-prefixes
   suffixes = var.resource-suffixes
+
+  random_length = var.random-resource-suffix-length
 }
 
 resource "azurerm_subnet" "Subnet" {
-  name                 = azurecaf_name.name.results.azurerm_subnet
+  name                 = module.names.results.azurerm_subnet
   resource_group_name  = var.resource-group-name
   virtual_network_name = var.vnet-name
   address_prefixes     = [var.address-prefix]
@@ -29,7 +36,7 @@ resource "azurerm_subnet" "Subnet" {
 resource "azurerm_route_table" "RouteTable" {
   count = var.firewall-ip == null ? 0 : 1
 
-  name                = azurecaf_name.name.results.azurerm_route_table
+  name                = module.names.results.azurerm_route_table
   resource_group_name = var.resource-group-name
   location            = var.location
 
