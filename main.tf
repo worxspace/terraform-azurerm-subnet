@@ -11,8 +11,6 @@ module "names" {
   source   = "app.terraform.io/worxspace/name/azurecaf"
   version  = "0.0.2"
 
-  count = var.github_repo == null ? 0 : 1
-
   resource_types = [
     "azurerm_subnet",
     "azurerm_route_table"
