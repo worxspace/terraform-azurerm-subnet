@@ -23,7 +23,7 @@ module "names" {
 }
 
 resource "azurerm_subnet" "Subnet" {
-  name                 = module.names.results.azurerm_subnet
+  name                 = var.project-name == "AzureBastionSubnet" ? var.project-name : module.names.results.azurerm_subnet
   resource_group_name  = var.resource-group-name
   virtual_network_name = var.vnet-name
   address_prefixes     = [var.address-prefix]
